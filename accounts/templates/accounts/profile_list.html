@@ -1,0 +1,85 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<html lang="en">
+
+<body>
+   <div class="container ">
+       <div class="profile">
+           {% for worker in profile %}
+            <div class="profile-header clearfix">
+               <div class="float-left">
+                    <img src="{{ worker.profile.image.url }}" alt="">
+               </div>
+               <div class="text float-left">
+                    <h4>{{ worker.username }}</h4>
+                    <h6>{{ worker.profile.country.name }}</h6>
+<!--                    <span>Rating: 7/10</span>-->
+<!--                    <span>|</span>-->
+                    <span>Per Day Rate: 500 Taka</span>
+               </div>
+            </div>
+            <div class="profile-body clearfix">
+                <hr>
+                <div class="left-panel col-lg-6 float-left">
+                    <span class="text">Location: </span>
+                    <span class="text-1">{{ worker.profile.address }}</span><br>
+                    {% if user.is_authenticated  %}
+                    <span class="text">Phone: </span>
+                    <span class="text-1">{{ worker.profile.phone_number }}</span>
+                    {% endif %}
+                    <br>
+<!--                    <span class="text">Phone:</span>-->
+<!--                    <span class="text-1">{{ worker.profile.phone_number }}</span><br>-->
+                    <span class="text">Work Rate:</span>
+                    <span class="text-1">5$ per hour</span>
+                    <div class="wright-review">
+                        <form action="">
+                            <label class="text-1">Post a review:</label><br>
+                            <textarea></textarea>
+                            <button type="button" class="btn btn-primary float-right">Post</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="right-panel col-lg-6 float-left">
+                    <div class="recent-reviews">
+                        <h6>Recent Revviews:</h6>
+                        <div class="review-body">
+                            <div class="row">
+                                <div class="col-lg-2 float-left">
+                                    <img src="{{ worker.profile.image.url }}" alt="">
+                                </div>
+                                <div class="col-lg-10 float-left">
+                                    <h6>Rewiewer Name</h6>
+                                    <p>graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2 float-left">
+                                    <img src="{{ worker.profile.image.url }}" alt="">
+                                </div>
+                                <div class="col-lg-10 float-left">
+                                    <h6>Rewiewer Name</h6>
+                                    <p>graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2 float-left">
+                                    <img src="{{ worker.profile.image.url }}" alt="">
+                                </div>
+                                <div class="col-lg-10 float-left">
+                                    <h6>Rewiewer Name</h6>
+                                    <p>graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           {% endfor %}
+       </div>
+   </div>
+</body>
+</html>
+{% endblock content %}

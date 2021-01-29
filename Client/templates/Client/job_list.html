@@ -1,0 +1,52 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br><br><br><br><br><br><br><br><br><br><br>
+<form method="get">
+    {{ MyFilter.form }}
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+<table class="table">
+     <a  class="btn btn-primary" href="{% url 'job_add' %}">Add Job Post</a>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Image</th>
+      <th scope="col">Category Name </th>
+      <th scope="col">Sub Category Name </th>
+      <th scope="col">Content </th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for job in job %}
+   {% if job.username == user%}
+    <tr>
+      <th scope="row">{{ job.id}}</th>
+      <td>{{ job.Title }}</td>
+         <td>
+        <img class="rounded-circle account-img" src="{{ job.image.url }}" style="height: 150px; width:150px;">
+      </td>
+      <td>{{ job.country }}</td>
+      <td>
+        {% for job in job.city.all %}
+          {{ job.name }}<br>
+        {% endfor%}
+      </td>
+      <td>{{ job.content }}</td>
+      <td>
+          <a href="{% url 'job_change' job.id %}" class="btn btn-primary"> Edit</a>
+      </td>
+      <td>
+          <a href="{% url 'job_delete' job.id %}" class="btn btn-warning"> Delete</a>
+      </td>
+    </tr>
+
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

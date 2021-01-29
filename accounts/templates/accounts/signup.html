@@ -1,0 +1,18 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+    <br>
+        <div class="content-section">
+            <div class="form-group">
+                <p><a href="{% url 'person_add' %}" class="btn btn-primary">Create Account As a Worker</a></p>
+                <br>
+                <p><a href="{% url 'client_add' %}" class="btn btn-success">Create Account As a Client/Customer</a></p>
+            </div>
+        </div>
+{% endblock content %}

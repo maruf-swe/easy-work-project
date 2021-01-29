@@ -1,0 +1,37 @@
+{% extends 'index1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br><br><br><br><br><br><br><br><br><br><br>
+    <div class="content-section">
+        {% if user.profile.user %}
+
+        {% else %}
+         <div class="form-group">
+             <h1>******please fill up user profile</h1>
+            <a  class="btn btn-primary" href="{% url 'client_profile_create'  %}">ADD Profile</a>
+        </div>
+        {% endif %}
+      <div class="media">
+        <img class="rounded-circle account-img width="150px" height="200px"" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">UserName : {{ user.username }}</h2>
+          <h3 class="text-secondary">Email : {{ user.email }}</h3>
+          <h3 class="text-secondary">Phone Number : {{ user.profile.phone_number }}</h3>
+          <h3 class="text-secondary">First Name : {{ user.first_name }}</h3>
+          <h3 class="text-secondary">Last Name : {{ user.last_name }}</h3>
+           <h3 class="text-secondary">Full NAME : {{ user.first_name }} {{ user.last_name }} </h3>
+                    <br><br><br><br><br>
+            <div class="form-group">
+
+                <a  class="btn btn-primary" href="{% url 'client_change' user.pk %}">1.Change Profile</a>
+                {% if user.profile.user == user %}
+                <a  class="btn btn-primary" href="{% url 'client_profile_update' user.profile.pk %}">2.Change Profile</a>
+                {% endif %}
+                <a  class="btn btn-primary" href="{% url 'client_change_password' %}">Change Password</a>
+            </div>
+
+          </div>
+      </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br><br><br><br><br><br><br><br><br><br><br>
+<form method="get">
+   {{ MyFilter.form }}
+   <button class="btn btn-primary" type="submit">Search</button>
+ </form>
+<table class="table">
+     <a  class="btn btn-primary" href="{% url 'create_subcategory' %}">Add Sub Category</a>
+
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Category Name </th>
+      <th scope="col">Sub Category Name </th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for subcategory in subcategory %}
+    <tr>
+      <th scope="row">{{ category.id}}</th>
+      <td>{{ subcategory.country }}</td>
+      <td>{{ subcategory.name }}</td>
+      <td>
+          <a href="{% url 'update_subcategory' subcategory.id %}" class="btn btn-primary"> Edit</a>
+      </td>
+      <td>
+          <a href="{% url 'delete_subcategory' subcategory.id %}" class="btn btn-warning"> Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

@@ -1,0 +1,132 @@
+{% extends 'index1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br>
+<br>
+<br><br>
+<br>
+<br>
+
+
+
+<div class="container ">
+    <div class="row">
+                <form method="get">
+                            {{ MyFilter.form }}
+                            <button class="btn btn-primary" type="submit">Search</button>
+                 </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="row">
+         {% for job in job %}
+         <div class="profile col-lg-6 col-md-6 mb-4">
+
+            {% if job.is_published == True %}
+            <div class="profile-header clearfix">
+               <div class="float-left">
+                    <img src="{{ job.image.url }}" alt="">
+               </div>
+               <div class="text float-left">
+                    <h4>Job Created : {{ job.username }}</h4>
+                    <h6>Job Title : {{ job.Title}}</h6>
+                    <h6>Job Category: {{ job.country }}</h6>
+                    <span>{{ job.content}}</span>
+               </div>
+            </div>
+             <div class="left-panel col-lg-6 float-left">
+                    <span class="text">Location: </span>
+                    <span class="text-1">{{ job.location }}</span>
+                    {% if user.is_authenticated  %}
+                    <span class="text">Phone: </span>
+                    <span class="text-1">{{ job.profile.phone_number }}</span>
+                    {% endif %}
+                    <br>
+<!--                    <span class="text">Phone:</span>-->
+<!--                    <span class="text-1">{{ worker.profile.phone_number }}</span><br>-->
+                    <span class="text">Work Rate:</span>
+                    <span class="text-1">5$ per hour</span>
+                </div>
+
+
+           <div>
+              {% if user.is_authenticated and user.is_worker %}
+               {% if job.is_apply == True and job.applied_username == user %}
+               <a class="btn btn-success"> Applied </a>
+               {% else %}
+               <a class="btn btn-success" href="{% url 'job_base_apply' job.pk %}"> Apply </a>
+               {% endif%}
+               {% endif%}
+
+           </div>
+
+           {% endif %}
+    </div>
+{% endfor%}
+
+
+
+
+<!--<div class="site-section">-->
+<!--        <div class="container">-->
+
+<!--            <div class="row">-->
+<!--                <form method="get">-->
+<!--                            {{ MyFilter.form }}-->
+<!--                            <button class="btn btn-primary" type="submit">Search</button>-->
+<!--                 </form>-->
+<!--                <br>-->
+<!--                <br>-->
+<!--                <br>-->
+<!--                <br>-->
+<!--                <br>-->
+<!--                {% for job in job %}-->
+<!--                {% if job.is_published == True %}-->
+<!--                    <div class="col-lg-4 col-md-6 mb-4">-->
+<!--                        <div class="course-1-item">-->
+<!--                            <figure class="thumnail">-->
+<!--                            <a><img src="{{ job.image.url }}" alt="Image" class="img-fluid" style="height: 350px; width:350px;"></a>-->
+<!--                            <div class="alert alert-warning" role="alert">-->
+<!--                                   Work Title {{ job.Title}}-->
+<!--                            </div>-->
+<!--                            <div class="alert alert-success" role="alert">-->
+<!--                                   Work Description <br> {{ job.content}}-->
+<!--                            </div>-->
+<!--                            <div class="alert alert-danger" role="alert">-->
+<!--                             Work Created : {{ job.username}}-->
+<!--                            </div>-->
+<!--                            <div class="alert alert-info" role="alert">-->
+<!--                              Work Category : {{ job.country }}-->
+<!--                            </div>-->
+<!--                            <div class="alert alert-info" role="alert">-->
+<!--                              Work Location : {{ job.location }}-->
+<!--                            </div>-->
+<!--                            <div class="alert alert-success" role="alert">-->
+<!--                              Work Sub Category :<br>-->
+<!--                                {% for job in job.city.all %}-->
+<!--                                         {{ job.name }}<br>-->
+<!--                                {% endfor%}</h3>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                {% if job.is_apply and job.username == user %}-->
+<!--                                		<a class="btn btn-success"> Applied </a>-->
+<!--                                {% else %}-->
+<!--                                <a class="btn btn-success" href="{% url 'job_base_apply' job.pk %}"> Apply </a>-->
+<!--                                {% endif%}-->
+<!--                             <div>-->
+
+<!--                            </figure>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                {% endif%}-->
+<!--                {% endfor%}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--</div>-->
+{% endblock content %}

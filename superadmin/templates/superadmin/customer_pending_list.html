@@ -1,0 +1,47 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br><br><br><br><br><br><br><br><br><br><br>
+<form method="get">
+   {{ MyFilter.form }}
+   <button class="btn btn-primary" type="submit">Search</button>
+ </form>
+<table class="table">
+
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User Name </th>
+      <th scope="col">Email</th>
+      <th scope="col">Voter Image</th>
+      <th scope="col">is Customer</th>
+      <th scope="col">is Active</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for customer in customer %}
+    <img>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ customer.username }}</td>
+      <td>{{ customer.email }}</td>
+      <td>
+        <img class="img-fluid account-img" src="{{ customer.image.url }}">
+      </td>
+      <td>
+          {{ customer.is_customer}}
+      </td>
+      <td>
+          {{ customer.is_active }}
+      </td>
+  {% if customer.is_active == False %}
+      <td>
+          <a class="btn btn-primary" href="{% url 'client_active_account' customer.pk %}">Account Active</a>
+      </td>
+  {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

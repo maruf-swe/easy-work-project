@@ -1,0 +1,14 @@
+{% load static %}
+<style>
+        #id_city {
+            width: 100%;
+        }
+    </style>
+<!--<option value="">---------</option>-->
+{% for city in cities %}
+<!--<input type="checkbox" value="{{ city.pk }}" name="{{ city.name }}">-->
+
+        <input type="checkbox" value="{{city.id}}" name="city">{{ city.name }}<br>
+
+<!--<option value="{{ city.pk }}">{{ city.name }}</option>-->
+{% endfor %}

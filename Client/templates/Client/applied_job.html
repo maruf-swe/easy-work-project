@@ -1,0 +1,42 @@
+{% extends 'index1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h3 class="btn btn-primary">Applied Job Post</h3>
+<br><br><br><br><br><br><br><br><br><br><br>
+<form method="get">
+    {{ MyFilter.form }}
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+<div class="site-section">
+        <div class="container">
+            <div class="row">
+                {% for job in job %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="course-1-item">
+                            <figure class="thumnail">
+                            <a><img src="{{ job.image.url }}" alt="Image" class="img-fluid" style="height: 350px; width:350px;"></a>
+                            <div class="alert alert-info" role="alert">
+                              Job Category : {{ job.country }}
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                              Job Sub Category :<br>
+                                {% for job in job.city.all %}
+                                         {{ job.name }}<br>
+                                {% endfor%}</h3>
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                              Job Applied UserName : {{ job.applied_username }}
+                            </div>
+                            <div class="alert alert-danger" role="alert">
+                              Job Applied User Phone Number  : {{ job.applied_username.profile.phone_number }}
+                            </div>
+                            </figure>
+                        </div>
+                    </div>
+                {% endfor%}
+            </div>
+        </div>
+</div>
+{% endblock content %}

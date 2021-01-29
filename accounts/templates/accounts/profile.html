@@ -1,0 +1,54 @@
+{% extends 'index1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="content-section">
+    {% if user.profile.user %}
+
+    {% else %}
+    <div class="form-group">
+        <a class="btn btn-primary" href="{% url 'client_profile_create'  %}">ADD Profile</a>
+    </div>
+    {% endif %}
+    <div class="media">
+        <div class="row">
+            <div class="cal-md-6">
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+            </div>
+            <div class="cal-md-6">
+                <div class="media-body">
+                    <h2 class="account-heading">UserName : {{ user.username }}</h2>
+                    <h3 class="text-secondary">Email : {{ user.email }}</h3>
+                    <h3 class="text-secondary">Phone Number : {{ user.profile.phone_number }}</h3>
+                    <h3 class="text-secondary">Category : {{ user.profile.country.name }}</h3>
+                    <h3 class="text-secondary">Sub Category :{{ user.profile.username }} </h3>
+                    {% for subcategory in user.profile.city.all %}
+                    <h3>{{ subcategory.name }}</h3>
+                    {% endfor%}
+
+                    <h3 class="text-secondary">First Name : {{ user.first_name }}</h3>
+                    <h3 class="text-secondary">Last Name : {{ user.last_name }}</h3>
+                    <h3 class="text-secondary">Full NAME : {{ user.first_name }} {{ user.last_name }} </h3>
+                    <br><br><br><br><br>
+                    <div class="form-group">
+                        {% if user.profile.user == user %}
+                        <a class="btn btn-primary" href="{% url 'service_change' user.profile.pk %}">Change Service</a>
+                        {% endif%}
+                        <a class="btn btn-warning" href="{% url 'person_change' user.pk %}">Change Profile</a>
+                        <a class="btn btn-success" href="{% url 'worker_change_password' %}">Change Password</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FORM HERE -->
+</div>
+{% endblock content %}

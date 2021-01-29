@@ -1,0 +1,56 @@
+{% extends 'index1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<h3 class="btn btn-primary">Applied Job Post</h3>
+<html lang="en">
+
+<body>
+   <div class="container ">
+       <div class="profile">
+           {% for job in job %}
+            <div class="profile-header clearfix">
+               <div class="float-left">
+                    <img src="{{ job.image.url }}" alt="">
+               </div>
+               <div class="text float-left">
+                    <h4>{{ job.username }}</h4>
+                    <h6>{{ job.Title}}</h6>
+                    <h6>{{ job.country }}</h6>
+                    <h6>{% for job in job.city.all %}
+                                         {{ job.name }}<br>
+                                {% endfor%}</h3>
+                    </h6>
+<!--                    <span>Rating: 7/10</span>-->
+<!--                    <span>|</span>-->
+                    <span>{{ job.content}}</span>
+               </div>
+            </div>
+            <div class="profile-body clearfix">
+                <hr>
+                <div class="left-panel col-lg-6 float-left">
+                    <span class="text">Location: </span>
+                    <span class="text-1">{{ job.location }}</span>
+                    <br>
+<!--                    <span class="text">Phone:</span>-->
+<!--                    <span class="text-1">{{ worker.profile.phone_number }}</span><br>-->
+                    <span class="text">Work Rate:</span>
+                    <span class="text-1">5$ per hour</span>
+                </div>
+            </div>
+
+
+ {% endfor%}
+                </div>
+            </div>
+
+{% endblock content %}

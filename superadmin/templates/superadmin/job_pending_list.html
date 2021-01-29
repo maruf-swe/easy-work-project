@@ -1,0 +1,52 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br><br><br><br><br><br><br><br><br><br><br>
+<form method="get">
+   {{ MyFilter.form }}
+   <button class="btn btn-primary" type="submit">Search</button>
+ </form>
+<table class="table">
+
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User Name </th>
+      <th scope="col">Title</th>
+      <th scope="col"> Image</th>
+      <th scope="col">Category</th>
+      <th scope="col">Content</th>
+      <th scope="col">is Published</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for worker in job %}
+    <img>
+      <th scope="row">{{ worker.id}}</th>
+      <td>{{ worker.username }}</td>
+      <td>{{ worker.Title }}</td>
+      <td>
+        <img class="img-fluid account-img" src="{{ worker.image.url }}" style="height: 150px; width:150px;">
+      </td>
+      <td>
+          {{ worker.country }}
+      </td>
+      <td>
+          {{ worker.content }}
+      </td>
+        <td>
+          {{ worker.is_published }}
+      </td>
+      {% if worker.is_published == False %}
+
+            <td>
+              <a class="btn btn-primary" href="{% url 'job_published' worker.pk %}">Job Publish</a>
+             </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

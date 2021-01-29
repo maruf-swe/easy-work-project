@@ -1,0 +1,31 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br><br><br><br><br><br><br><br><br><br><br>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Client Profile Basic Information</h1>
+    {{ form|crispy }}
+
+    <input  class="btn btn-primary" type="submit" value="Submit">
+
+     <a  class="btn btn-primary" href="{% url 'client_profile' %}">Back Profile</a>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</body>
+</html>
+
+{% endblock content %}
